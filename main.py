@@ -1,11 +1,11 @@
-#
+import pandas as pd
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# 1 - Carrega uma base de dados pré selecionada
+planetas = pd.read_csv("planets.csv")
 
+# 2 - Operações com a base
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
+# a. Pelo menos um filtro de coluna;
+# b. Pelo menos duas operações de filtro;
+# c. Pelo menos duas operações de groupby.
+# d. Salvar os dados filtrados em um .csv novo.
