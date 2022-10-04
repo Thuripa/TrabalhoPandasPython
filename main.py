@@ -34,19 +34,31 @@ How the proposed task might benefit from more modern Computer Vision approaches.
 '''
 
 import pandas as pd
+
+
+
 import matplotlib as plt
 
 # Lê o arquivo com as genéticas
 tabela_geneticas = pd.read_csv("leafly_strain_data.csv")
+
+pd.set_option('max_colwidth', 10)
+pd.set_option('max_colwidth', 10)
+pd.set_option('max_colwidth', 10)
 
 # Separa as genéticas da acordo com a coluna espécie (type)
 sativas = tabela_geneticas.loc[tabela_geneticas["type"] == "Sativa"]
 indicas = tabela_geneticas.loc[tabela_geneticas["type"] == "Indica"]
 hibridas = tabela_geneticas.loc[tabela_geneticas["type"] == "Hybrid"]
 
-
 # Separa as genéticas com eficácia no tratamento da depressão
 geneticas_depressao = tabela_geneticas.loc[tabela_geneticas['depression'] != "0%"]
+
+geneticas_depressao.to_csv("geneticas_depressao.csv")
+
+# Separa as genéticas indicas com efeito calmante e que não causam sono
+
+
 
 # Extrai as colunas de nome e nota para tratamento de depressão
 lista_nomes = geneticas_depressao['name'].to_list()
@@ -55,7 +67,7 @@ lista_notas = geneticas_depressao['depression'].to_list()
 # Cria um dicionário contendo o nome e nota
 dicionario = {'nome', 'nota'}
 
-# Extrai o valor percentual da nota e adiciona no dicionario
+# Popula o dicionario com o nome e nota
 for x in range(0 , len(lista_notas)):
 
     # Recebe a nota da genética x
