@@ -97,24 +97,110 @@ print(medias_matematica_s_internet, '\n')
 matplotlib.use('TkAgg')
 
 # Grafico 1
+# Exibe um grafico de barras mostrando as médias masculinas e femininas em matemática
 
-# Compara as médias
+# Junta as 3 médias femininas numa única lista
+lista_medias_fem_matematica = matematica.loc[matematica['sex'] == 'F', ['G1', 'G2', 'G3']]\
+    .mean().values.tolist()
 
-lista_notas_femininas_matematica = notas_femininas_matematica['G3'].to_list()
-print(lista_notas_femininas_matematica)
+# Junta as 3 médias masculinas numa única lista
+lista_medias_mas_matematica = matematica.loc[matematica['sex'] == 'M', ['G1', 'G2', 'G3']]\
+    .mean().values.tolist()
 
-lista_notas_masculinas_matematica = notas_masculinas_matematica['G3'].to_list()
-print(lista_notas_masculinas_matematica)
+# Define o eixo x
+eixo_x = ['Média 1', 'Média 2', 'Média 3']
+x = np.arange(len(eixo_x))
+width = 0.35
 
-plt.plot(lista_notas_masculinas_matematica, lista_notas_femininas_matematica)
+# Cria Subgráficos Masculino e Feminino
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width/2, lista_medias_fem_matematica, width, label='Feminino')
+rects2 = ax.bar(x + width/2, lista_medias_mas_matematica, width, label='Masculino')
+
+# Adiciona rótulos
+ax.set_ylabel('Nota')
+ax.set_title('Feminino x Masculino - Matemática')
+ax.set_xticks(x, eixo_x)
+ax.legend()
+
+# Plota os valores no gráfico
+ax.bar_label(rects1, padding=3)
+ax.bar_label(rects2, padding=3)
+
+fig.tight_layout()
 
 plt.show()
 
 
-
 # Grafico 2
+# Exibe um grafico de barras mostrando as médias masculinas e femininas em português
+
+# Junta as 3 médias femininas numa única lista
+lista_medias_fem_portugues = portugues.loc[portugues['sex'] == 'F', ['G1', 'G2', 'G3']]\
+    .mean().values.tolist()
+
+# Junta as 3 médias masculinas numa única lista
+lista_medias_mas_portugues = portugues.loc[portugues['sex'] == 'M', ['G1', 'G2', 'G3']]\
+    .mean().values.tolist()
+
+# Define o eixo x
+eixo_x = ['Média 1', 'Média 2', 'Média 3']
+x = np.arange(len(eixo_x))
+width = 0.35
+
+# Cria Subgráficos Masculino e Feminino
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width/2, lista_medias_fem_portugues, width, label='Feminino')
+rects2 = ax.bar(x + width/2, lista_medias_mas_portugues, width, label='Masculino')
+
+# Adiciona rótulos
+ax.set_ylabel('Nota')
+ax.set_title('Feminino x Masculino - Português')
+ax.set_xticks(x, eixo_x)
+ax.legend()
+
+# Plota os valores no gráfico
+ax.bar_label(rects1, padding=3)
+ax.bar_label(rects2, padding=3)
+
+fig.tight_layout()
+
+plt.show()
 
 # Grafico 3
+# Resultado Geral Feminino x Masculino
+
+# Soma as notas de matemática e português
+resultado_feminino = lista_medias_fem_matematica + lista_medias_fem_portugues
+resultado_masculino = lista_medias_mas_matematica + lista_medias_mas_portugues
+
+# Extrai a média de notas
+media_feminina = sum(resultado_feminino) / len(resultado_feminino)
+media_masculina = sum(resultado_masculino) / len(resultado_masculino)
+
+# Define o eixo x
+eixo_x = ['Média Feminina', 'Média Masculina']
+x = np.arange(len(eixo_x))
+width = 0.35
+
+# Cria Subgráficos Masculino e Feminino
+fig, ax = plt.subplots()
+rects1 = ax.bar(x - width/2, media_feminina, width, label='Feminino')
+rects2 = ax.bar(x + width/2, media_masculina, width, label='Masculino')
+
+# Adiciona rótulos
+ax.set_ylabel('Nota')
+ax.set_title('Feminino x Masculino - Geral')
+ax.set_xticks(x, eixo_x)
+ax.legend()
+
+# Plota os valores no gráfico
+ax.bar_label(rects1, padding=3)
+ax.bar_label(rects2, padding=3)
+
+fig.tight_layout()
+
+plt.show()
 
 
 
